@@ -1,0 +1,47 @@
+<%- include ('../partials/header') %>
+
+<div class="container my-5">
+  <header>
+    <h1>Favorite Books</h1>
+  </header>
+  <hr>
+  <div class="content">
+    <% for (let resource of resources) { %>
+      <div class="card my-3">
+        <div class="card-header clearfix">
+          <div class=" float-left">
+            <h5 class="card-title"><%= resource.title %></h5>
+            <% if (typeof resource.user !== 'undefined') { %>
+              <small>Author: <%= resource.author %></small>
+            <% } %>
+          </div>
+          <div class="float-right">
+            <small><%= resource.updatedAt %></small>
+          </div>
+        </div>
+        <div class="card-body">          
+          <p class="card-text">
+            <%= resource.synopsis %>
+          </p>
+          <a href="/resources/<%= resource.id %>">more...</a>
+        </div>
+        <% if (authorized && (typeof resource.user === 'undefined' || resource.user.email === email)) { %>
+          <div class="card-footer">
+            <a href="/resources/<%= resource.id %>/edit">
+              <i class="fa fa-edit"></i>
+            </a>
+            &nbsp;/&nbsp;
+            <form class="form-inline" action="/resources/delete" method="post" onsubmit="return confirm('Are you sure you want to delete all your hard work?');">
+              <input type="hidden" value="<%= resource.id %>" name="id">
+              <button class="delete" type="submit">
+                <i class="fa fa-trash"></i>
+              </button>
+            </form>
+          </div>
+        <% } %>
+      </div>
+    <% } %>
+  </div>
+</div>
+
+<%- include ('../partials/footer') %>
