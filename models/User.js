@@ -13,12 +13,28 @@ const UserSchema = new mongoose.Schema({
   email: {
     type: String,
     required: true,
-    validate: {
-      validator: function (v) {
-        return this.emailConfirmation === v
+    unique: true,
+    dropDups: true,
+    validate: [
+      {
+        validator: function (value) {
+          return this.emailConfirmation === value;
+        },
+        message: props => `${props.value} doesn't match the email confirmation`
       },
-      message: props => `${props.value} doesn't match the email confirmation`
-    }
+      {
+        validator: async function (value) {
+          const emailCount = await this.model('User').count({ email: value });
+          return !emailCount;
+        },
+        message: props => `${props.value} exists. Please try a new email or login`
+      }
+    ]
+  }
+}, {
+  timestamps: true,
+  toJSON: {
+    getters: true
   }
 });
 
