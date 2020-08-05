@@ -17,10 +17,6 @@ function Nav ({user}) {
             <Link to="/" className="nav-link">Home</Link>
           </li>
 
-          <li className="nav-item">
-          <Link to="/resources/new" className="dropdown-item">New Book</Link>
-          </li>
-
           <li className="nav-item dropdown">
             <a href="" className="nav-link dropdown-toggle" id="booksDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Books
