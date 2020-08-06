@@ -47,7 +47,7 @@ const Index = function ({user}) {
             <div className="card-header clearfix">
               <div className="float-left">
                 <h5 className="card-title">
-                  {resources.title}
+                  {resource.title}
                 </h5>
 
                 {resource.user ? (
@@ -77,7 +77,7 @@ const Index = function ({user}) {
                   <i className="fa fa-edit"></i>
                 </Link>
 
-                <button type="button" onClick={() => deleteResource(resource)}>
+                <button type="button" onClick={() => deleteResource(resources)}>
                   <i className="fa fa-trash"></i>
                 </button>
               </div>
