@@ -81,18 +81,17 @@ exports.update = async (req, res) => {
     const { user: email } = req.session.passport;
     const user = await User.findOne({email: email});
 
-    let resource = await Resource.findById(req.body.id);
+    let resource = await Resource.findById(req.body._id);
     if (!resource) throw new Error('Book could not be found');
-
+   
     const attributes = {user: user._id, ...req.body};
     await Resource.validate(attributes);
-    await Resource.findByIdAndUpdate(attributes.id, attributes);
+    await Resource.findByIdAndUpdate(attributes._id, attributes);
 
-    req.flash('success', 'your book was updated successfully');
-    res.redirect(`/resources/${req.body.id}`);
+    res.status(200).json(resource);
   } catch (error) {
-    req.flash('danger', `There was an error updating this book: ${error}`);
-    res.redirect(`/resources/${req.body.id}/edit`);
+    console.error(error);
+    res.status(400).json({status: 'failed', message: `There was an error in updating the book.`, error});
   }
 };
 
