@@ -4,7 +4,6 @@ import Axios from 'axios';
 import { Form, Container } from 'react-bootstrap';
 import { Redirect } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { session } from 'passport';
 
 const Register = ({setUser}) => {
   const [inputs, setInputs] = useState({

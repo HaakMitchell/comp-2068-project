@@ -62,7 +62,8 @@ const Index = function ({user}) {
 
             <div className="card-body">
               <p className="card-text">
-                {resource.synopsis}
+                Author: {resource.author} <br></br>
+                About the Book: {resource.content}
               </p>
             </div>
 
