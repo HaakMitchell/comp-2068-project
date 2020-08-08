@@ -63,7 +63,8 @@ const Index = function ({user}) {
             <div className="card-body">
               <p className="card-text">
                 Author: {resource.author} <br></br>
-                About the Book: {resource.content}
+                About the Book: {resource.content} <br></br>
+                Book Type: {resource.bookType}
               </p>
             </div>
 
@@ -88,7 +89,6 @@ const Index = function ({user}) {
       </div>
     </Container>
   );
-
 };
 
 export default Index;
